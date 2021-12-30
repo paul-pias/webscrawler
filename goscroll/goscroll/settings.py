@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     ###
     'webscrawler',
+    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -57,6 +58,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {  
+                    'staticfiles': 'django.templatetags.static',
+                },
         },
     },
 ]
@@ -113,12 +117,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'utils')
+STATIC_URL = '/utils/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'haatehaate/static/')
+    os.path.join(BASE_DIR, 'goscroll/utils/')
 ]
 
 # Media files
@@ -127,6 +130,8 @@ MEDIA_URL = '/media/'
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -152,8 +157,5 @@ REST_FRAMEWORK = {
         
     
 }
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
