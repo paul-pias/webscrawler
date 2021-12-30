@@ -29,4 +29,8 @@ class GetInfo(serializers.ModelSerializer):
 
     #     print(data_object)
 
+class BulkEntry(serializers.Serializer):
+
+    inputs = ValidateInfo(many =True)
+
     

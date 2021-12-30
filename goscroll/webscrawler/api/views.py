@@ -1,4 +1,5 @@
 from django.http.response import HttpResponse
+from rest_framework import serializers
 from rest_framework.response import Response
 # from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -6,12 +7,11 @@ from rest_framework.viewsets import ModelViewSet
 from webscrawler.api.serializers import (
 
     ValidateInfo,
+    BulkEntry,
 )
+from rest_framework.decorators import api_view
 from webscrawler.models import Data
-
-# from rest_framework.decorators import api_view
 from utils.scrawler import WebScrapper
-from utils.bulkentry import ManageBulkEntry
 from .serializers import  GetInfo
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -47,26 +47,28 @@ def initial_entry(request):
 
 
 ## Bulk Entry
+@swagger_auto_schema(methods= ['POST'], request_body= BulkEntry )
+@api_view(['POST'])
 def bulk_entry(request):
 
     """
     Returns a HTTPResponse
     Parameters:
 
-        jsonData (list) = List of list contains nested dictionaries         eg. [[{}, {}, {}], [{}, {}, {}, {}]]     
-        urls (list) = List of urls                                          eg. ["","","", ""]                               ## 
-
+        jsonData (list) = List of list contains nested dictionaries         eg. [{}, {}, {}, {}, {}, {}, {}]     
+        
     Returns:
             HttpResponse
     """
     
     if request.method == 'POST':
-        
-        bulk_data = ManageBulkEntry(request.data)
-        for key, value in bulk_data.items():
-            if Data.objects.filter(guid = key).exists():
+        bulk_data = request.data.get("inputs", [])
+        print(bulk_data)
+        for data in bulk_data:
+            value = data.get('guid')
+            if Data.objects.filter(guid = int(value)).exists():
                 continue
-            serializer = ValidateInfo(data = value)
+            serializer = ValidateInfo(data = data)
             if serializer.is_valid():
                 serializer.save()
     return HttpResponse("Success")
