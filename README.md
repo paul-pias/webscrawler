@@ -20,8 +20,9 @@ Run ``` $ python manage.py runserver ``` to execute the application.
 
 ### Endpoints
 I have used swagger to maintain the api calls.
-use ```http://localhost:8000/swagger/``` for more details. \
+use ```http://localhost:8000/swagger/``` for more details. 
 
-<hr> \
-\
+<hr> 
+
+
 There is file named scrawler.py in utils folder which is responsible for crawling into a given url and parse the file to insert the unique entries to DB.
