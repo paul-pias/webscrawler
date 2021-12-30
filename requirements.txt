@@ -1,0 +1,9 @@
+beautifulsoup4==4.10.0
+Django==3.2.10
+drf_yasg==1.20.0
+python-decouple==3.5
+python_dateutil==2.8.2
+requests==2.26.0
+dateutil==2.8.2
+rest_framework==3.13.1
+markdown==3.3.6
