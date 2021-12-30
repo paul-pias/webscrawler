@@ -16,3 +16,11 @@ $ pip install -r requirements.txt
 Manage your environment variables in the **.env** file. For instance change the database engine depending on which database you are using, change the database configuration if you want.
 
 Run ``` $ python manage.py runserver ``` to execute the application.
+
+
+### Endpoints
+I have used swagger to maintain the api calls.
+use ```http://localhost:8000/swagger/``` for more details.
+
+<hr> 
+There is file named scrawler.py in utils folder which is responsible for crawling into a given url and parse the file to insert the unique entries to DB.
