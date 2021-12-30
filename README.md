@@ -14,3 +14,5 @@ Run requirements.txt with pip
 $ pip install -r requirements.txt
 ```
 Manage your environment variables in the **.env** file. For instance change the database engine depending on which database you are using, change the database configuration if you want.
+
+Run ``` $ python manage.py runserver ``` to execute the application.
