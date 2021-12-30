@@ -26,3 +26,6 @@ use ```http://localhost:8000/swagger/``` for more details.
 
 
 There is file named scrawler.py in utils folder which is responsible for crawling into a given url and parse the file to insert the unique entries to DB.
+
+
+Although as a simple crud application it is good to go, but the performance may decrease for huge number of users and database calls. Upon depending on the use cases several approaches can be taken to optimise the performance; for instance indexing for optimal search result. There can be a authentication header to prevent DDOS attack on the database. Besides several caching techniques can also be used to serve to large number of users. 
